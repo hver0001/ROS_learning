@@ -193,6 +193,11 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
+# C++ Files
+add_executable(turtle_pub src/turtle_pub.cpp)
+target_link_libraries(turtle_pub ${catkin_LIBRARIES})
+
+
 #############
 ## Testing ##
 #############
