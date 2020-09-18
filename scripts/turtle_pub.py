@@ -13,7 +13,7 @@ def turtle():
 	
 	pub = rospy.Publisher('ocean', TurtleInfo, queue_size=10) # Topic is called ocean
 	rospy.init_node('turtle', anonymous=True) # Node is called turtle
-	rate = rospy.Rate(10) # 10 times a seconds
+	rate = rospy.Rate(0.2) # 1 every 5 seconds
 	
 	turtleID = 0
 	
@@ -25,9 +25,16 @@ def turtle():
 		msg.quality = random.randint(1, 10)
 		msg.name = turtleNames[random.randint(0, len(turtleNames) - 1)]
 	
-		# Publish the message
-		rospy.loginfo(msg)
-		pub.publish(msg)
+		# Only publish if the turtles are good enough
+		if (msg.quality >= 7):
+			# Publish the message
+			rospy.loginfo(msg)
+			pub.publish(msg)
+		
+		# Otherwise broadcast error
+		else:
+			rospy.loginfo("New turtle does not have a quality level high enough to show.")
+			
 		rate.sleep()
 		
 		turtleID += 1

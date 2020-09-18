@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
 	ros::Publisher turtle_pub = n.advertise<induction::TurtleInfo>("ocean", 1000);
 
 	// Create a loop rate
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(0.2);
 	
 	// Randomises the random
 	srand(time(NULL));
@@ -71,18 +71,23 @@ int main(int argc, char **argv) {
 		msg.id = ID;
 		msg.quality = rand() % 10 + 1;
 		
-		
+		// Check if quality is greater than 7
+		if (msg.quality >= 7) {
+			// Publishes the information as a string
+			ROS_INFO("Turtle #%d, %s has been sent with quality of %d.", msg.id, msg.name.c_str(), msg.quality);
 
-		// Publishes the information as a string
-		ROS_INFO("Turtle #%d, %s has been sent with quality of %d.", msg.id, msg.name.c_str(), msg.quality);
-
-		/**
-		 * The publish() function is how you send messages. The parameter
-		 * is the message object. The type of this object must agree with the type
-		 * given as a template parameter to the advertise<>() call, as was done
-		 * in the constructor above.
-		 */
-		turtle_pub.publish(msg);
+			/**
+			 * The publish() function is how you send messages. The parameter
+			 * is the message object. The type of this object must agree with the type
+			 * given as a template parameter to the advertise<>() call, as was done
+			 * in the constructor above.
+			 */
+			turtle_pub.publish(msg);
+			
+		// Otherwise broadcast error
+		} else {
+			ROS_INFO("New turtle does not have a quality level high enough to show.");
+		}
 
 		ros::spinOnce();
 
