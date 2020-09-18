@@ -196,6 +196,8 @@ include_directories(
 # C++ Files
 add_executable(turtle_pub src/turtle_pub.cpp)
 target_link_libraries(turtle_pub ${catkin_LIBRARIES})
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
 
 
 #############

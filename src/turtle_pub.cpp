@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
 		
 
 		// Publishes the information as a string
-		ROS_INFO("%s", msg.name);
+		ROS_INFO("Turtle #%d, %s has been sent with quality of %d.", msg.id, msg.name.c_str(), msg.quality);
 
 		/**
 		 * The publish() function is how you send messages. The parameter
