@@ -1,0 +1,6 @@
+<launch>
+	<group ns="induction">
+		<node pkg="induction" name="turtle_pub" type="turtle_pub"/>
+		<node pkg="induction" name="listener" type="listener"/>
+	</group>
+</launch>
