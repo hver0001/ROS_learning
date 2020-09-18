@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 	*/
 	ros::Publisher turtle_pub = n.advertise<induction::TurtleInfo>("ocean", 1000);
 
-	// Create a loop rape
+	// Create a loop rate
 	ros::Rate loop_rate(10);
 	
 	// Randomises the random
